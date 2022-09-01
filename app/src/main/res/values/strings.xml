@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Love Calculator</string>
+    <string name="ZeroPercent">0%</string>
+    <string name="lover_one">Lover One</string>
+    <string name="lover_two">Lover Two</string>
 </resources>
