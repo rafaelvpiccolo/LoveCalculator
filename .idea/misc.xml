@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PersonalProjects/LoveCalculator/app/src/main/res/drawable/custom_editext.xml" value="0.25" />
         <entry key="..\:/PersonalProjects/LoveCalculator/app/src/main/res/drawable/heart_icon.xml" value="0.252" />
+        <entry key="..\:/PersonalProjects/LoveCalculator/app/src/main/res/drawable/ic_favorite_24dp.xml" value="0.3385" />
         <entry key="..\:/PersonalProjects/LoveCalculator/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>

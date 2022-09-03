@@ -11,11 +11,11 @@
         android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999">
 
         <ImageButton
             android:id="@+id/love_button"
@@ -29,38 +29,70 @@
             android:id="@+id/percent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/heart_pink"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:textSize="35sp"
-           />
+            android:textColor="@color/background_pink"
+            android:textSize="35sp" />
     </FrameLayout>
 
-    <EditText
-        android:id="@+id/name_two"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/lover_two"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toEndOf="@+id/name_one"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
-
-    <EditText
-        android:id="@+id/name_one"
-        android:layout_width="150dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_one_layout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="40dp"
         android:hint="@string/lover_one"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
+        android:textColorHint="@color/hint_pink"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/text_input_custom"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/hint_pink"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/name_two_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintVertical_bias="0.636">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_one"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:includeFontPadding="true"
+            android:inputType="textPersonName"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/text_pink"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_two_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/lover_two"
+        android:textColorHint="@color/hint_pink"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/text_input_custom"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/hint_pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name_one_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.636">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_two"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:includeFontPadding="true"
+            android:inputType="textPersonName"
+            android:paddingStart="16dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/text_pink"
+            android:textColorHint="@color/hint_pink"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

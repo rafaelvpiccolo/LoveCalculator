@@ -1,22 +1,19 @@
 package com.rafaelpiccolo.lovecalculator.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.rafaelpiccolo.lovecalculator.R;
 import com.rafaelpiccolo.lovecalculator.controller.RetrofitClient;
 import com.rafaelpiccolo.lovecalculator.model.LoveResult;
@@ -38,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainActivity = (ConstraintLayout) findViewById(R.id.main_activity);
+        mainActivity = findViewById(R.id.main_activity);
         resultButton = findViewById(R.id.love_button);
         percentText = findViewById(R.id.percent);
+
         fname = findViewById(R.id.name_one);
         sname = findViewById(R.id.name_two);
 
@@ -59,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(TextUtils.isEmpty(fname.getText()) || TextUtils.isEmpty(sname.getText())) {
-
                 resultButton.setImageResource(R.drawable.heart_unpressed);
                 mainActivity.setBackgroundColor(getResources().getColor(R.color.white));
                 percentText.setText("");
@@ -74,14 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void ConfigureButton(){
         resultButton.setOnClickListener(v -> {
-            if(TextUtils.isEmpty(fname.getText()) || TextUtils.isEmpty(sname.getText())) {
-                Toast.makeText(this, "Fill the names before you calculate", Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(fname.getText())) {
+                fname.setError("Fill me first!");
+            }
+            else if(TextUtils.isEmpty(sname.getText())) {
+                sname.setError("Fill me first!");
             }
             else {
                 resultButton.setImageResource(R.drawable.heart_pressed);
-                mainActivity.setBackgroundColor(getResources().getColor(R.color.heart_pink));
-                fname.setTextColor(getResources().getColor(R.color.white));
-                sname.setTextColor(getResources().getColor(R.color.white));
+                mainActivity.setBackgroundColor(getResources().getColor(R.color.background_pink));
                 getResults();
             }
         });
