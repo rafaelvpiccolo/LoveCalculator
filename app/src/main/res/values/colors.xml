@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_pink">#E83C5D</color>
     <color name="secondary_background_pink">#830631</color>
-    <color name="text_pink">#A71446</color>
+    <color name="text_pink">#E83C5D</color>
     <color name="hint_pink">#99A71446</color>
+    <color name="secondary_text_box">#B72D48</color>
 </resources>

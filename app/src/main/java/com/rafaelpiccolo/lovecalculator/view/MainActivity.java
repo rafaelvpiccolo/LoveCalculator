@@ -1,6 +1,7 @@
 package com.rafaelpiccolo.lovecalculator.view;
 
 import android.animation.ValueAnimator;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -23,10 +24,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private boolean buttonPressed = false;
+
     private ConstraintLayout mainActivity;
     private LoveResult loveResult;
     private TextView percentText;
     private ImageButton resultButton;
+    private TextInputLayout fnameLayout;
+    private TextInputLayout snameLayout;
     private EditText fname;
     private EditText sname;
 
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         fname = findViewById(R.id.name_one);
         sname = findViewById(R.id.name_two);
+        fnameLayout = findViewById(R.id.name_one_layout);
+        snameLayout = findViewById(R.id.name_two_layout);
 
         fname.addTextChangedListener(textWatcher);
         sname.addTextChangedListener(textWatcher);
@@ -56,10 +63,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(TextUtils.isEmpty(fname.getText()) || TextUtils.isEmpty(sname.getText())) {
-                resultButton.setImageResource(R.drawable.heart_unpressed);
-                mainActivity.setBackgroundColor(getResources().getColor(R.color.white));
-                percentText.setText("");
+            if(buttonPressed){
+                if(TextUtils.isEmpty(fname.getText()) || TextUtils.isEmpty(sname.getText())) {
+                    resultButton.setImageResource(R.drawable.heart_unpressed);
+                    mainActivity.setBackgroundColor(getResources().getColor(R.color.white));
+
+                    fnameLayout.setBoxBackgroundColor(getResources().getColor(R.color.white));
+                    fnameLayout.setBoxStrokeColorStateList(ColorStateList.valueOf(getResources().getColor(R.color.text_input_custom)));
+                    fnameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.hint_pink)));
+                    fnameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.hint_pink)));
+
+                    snameLayout.setBoxBackgroundColor(getResources().getColor(R.color.white));
+                    snameLayout.setBoxStrokeColorStateList(ColorStateList.valueOf(getResources().getColor(R.color.text_input_custom)));
+                    snameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.hint_pink)));
+                    snameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.hint_pink)));
+
+                    fname.setTextColor(getResources().getColor(R.color.text_pink));
+                    sname.setTextColor(getResources().getColor(R.color.text_pink));
+
+                    percentText.setText("");
+                    buttonPressed = false;
+                }
             }
         }
 
@@ -72,14 +96,31 @@ public class MainActivity extends AppCompatActivity {
     private void ConfigureButton(){
         resultButton.setOnClickListener(v -> {
             if(TextUtils.isEmpty(fname.getText())) {
-                fname.setError("Fill me first!");
+                fnameLayout.setError("Fill me first!");
             }
             else if(TextUtils.isEmpty(sname.getText())) {
-                sname.setError("Fill me first!");
+                fnameLayout.setError(null);
+                snameLayout.setError("Fill me too!");
             }
             else {
+                buttonPressed = true;
                 resultButton.setImageResource(R.drawable.heart_pressed);
                 mainActivity.setBackgroundColor(getResources().getColor(R.color.background_pink));
+
+                fnameLayout.setError(null);
+                fnameLayout.setBoxBackgroundColor(getResources().getColor(R.color.secondary_text_box));
+                fnameLayout.setBoxStrokeColorStateList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                fnameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                fnameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+
+                snameLayout.setError(null);
+                snameLayout.setBoxBackgroundColor(getResources().getColor(R.color.secondary_text_box));
+                snameLayout.setBoxStrokeColorStateList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                snameLayout.setDefaultHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                snameLayout.setHintTextColor(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+
+                fname.setTextColor(getResources().getColor(R.color.white));
+                sname.setTextColor(getResources().getColor(R.color.white));
                 getResults();
             }
         });
