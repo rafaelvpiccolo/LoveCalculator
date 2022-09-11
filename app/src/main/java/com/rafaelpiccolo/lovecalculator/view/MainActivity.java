@@ -1,16 +1,23 @@
 package com.rafaelpiccolo.lovecalculator.view;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -18,6 +25,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.rafaelpiccolo.lovecalculator.R;
 import com.rafaelpiccolo.lovecalculator.controller.RetrofitClient;
 import com.rafaelpiccolo.lovecalculator.model.LoveResult;
+
+import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
         sname.addTextChangedListener(textWatcher);
 
         ConfigureButton();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        getMenuInflater().inflate(R.menu.history_button_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.history_button) {
+            startActivity(new Intent(this, HistoryActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {

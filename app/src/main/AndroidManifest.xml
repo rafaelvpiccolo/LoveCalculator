@@ -4,7 +4,7 @@
     package="com.rafaelpiccolo.lovecalculator">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoveCalculator"
         tools:targetApi="31">
+        <activity
+            android:name=".view.HistoryActivity"
+            android:exported="false"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity" />
+        </activity>
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
